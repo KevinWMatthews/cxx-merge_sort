@@ -7,9 +7,10 @@ option(COMPILE_UNIT_TESTS "Compile unit tests" ON)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
-add_subdirectory(src)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_subdirectory(src)
 
 if(COMPILE_UNIT_TESTS)
     enable_testing()
