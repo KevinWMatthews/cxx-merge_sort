@@ -25,3 +25,10 @@ TEST(TestMergeSort, ArrayWithTwoIdenticalElementsIsAlreadySorted)
     MergeSort<array<int, 2>> merge_sort = {data};
     ASSERT_TRUE( is_sorted(data.cbegin(), data.cend()) );
 }
+
+TEST(TestMergeSort, ArrayWithTwoSortedElementsIsStillSorted)
+{
+    array<int, 2> data = {0, 1};
+    MergeSort<array<int, 2>> merge_sort = {data};
+    ASSERT_TRUE( is_sorted(data.cbegin(), data.cend()) );
+}
