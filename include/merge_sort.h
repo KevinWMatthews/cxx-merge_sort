@@ -34,35 +34,40 @@ private:
     };
 
     void merge(T& source, T& tmp, size_t begin_index, size_t mid_index, size_t end_index) {
-        auto begin = tmp.cbegin() + begin_index;
-        auto mid = begin + mid_index;
-        auto end = begin + end_index + 1;   // end() iterators actually point off the end of the array
+        // Start and end iterators for current merge.
+        auto s_begin = source.begin() + begin_index;
+        auto s_end = source.begin() + end_index + 1;   // end() iterators actually point off the end of the array
+        auto t_begin = tmp.begin() + begin_index;
+        auto t_end = tmp.begin() + end_index  + 1;
 
-        // Iterators for two halves of array
-        auto lower = begin;
-        auto upper = mid + 1;
+        std::copy(s_begin, s_end, t_begin);
 
-        for (auto& it : source)
+        // Iterators for two halves of the temporary array
+        auto t_lower = t_begin;
+        auto t_mid = tmp.begin() + mid_index;
+        auto t_upper = tmp.begin() + mid_index + 1;
+
+        for(auto it = s_begin; it < s_end; ++it)
         {
-            if (lower > mid)
+            if (t_lower > t_mid)
             {
-                it = *upper;
-                ++upper;
+                *it = *t_upper;
+                ++t_upper;
             }
-            else if (upper == end)
+            else if (t_upper == t_end)
             {
-                it = *lower;
-                ++lower;
+                *it = *t_lower;
+                ++t_lower;
             }
-            else if (*upper < *lower)
+            else if (*t_upper < *t_lower)
             {
-                it = *upper;
-                ++upper;
+                *it = *t_upper;
+                ++t_upper;
             }
             else
             {
-                it = *lower;
-                ++lower;
+                *it = *t_lower;
+                ++t_lower;
             }
         }
     };
