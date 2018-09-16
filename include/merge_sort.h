@@ -18,33 +18,38 @@ public:
             return;
 
         T tmp = {data_};
-        auto lo = tmp.cbegin();
+
+        // Boundary conditions
+        auto begin = tmp.cbegin();
         auto end = tmp.cend();
-        auto mid_index = (std::distance(lo, end)-1) / 2;
-        auto mid = lo + mid_index;
-        auto hi = mid + 1;
+        auto mid_index = (std::distance(begin, end)-1) / 2;
+        auto mid = begin + mid_index;
+
+        // Iterators for two halves of array
+        auto lower = begin;
+        auto upper = mid + 1;
 
         for (auto& it : data_)
         {
-            if (lo > mid)
+            if (lower > mid)
             {
-                it = *hi;
-                ++hi;
+                it = *upper;
+                ++upper;
             }
-            else if (hi == end)
+            else if (upper == end)
             {
-                it = *lo;
-                ++lo;
+                it = *lower;
+                ++lower;
             }
-            else if (*hi < *lo)
+            else if (*upper < *lower)
             {
-                it = *hi;
-                ++hi;
+                it = *upper;
+                ++upper;
             }
             else
             {
-                it = *lo;
-                ++lo;
+                it = *lower;
+                ++lower;
             }
         }
     };
