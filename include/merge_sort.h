@@ -19,25 +19,25 @@ public:
             return;
 
         T tmp = {data_};
-        actual_sort(data_, tmp, 0, data_.size()-1);
+        actual_sort(tmp, 0, data_.size()-1);
     };
 private:
     T& data_;
 
-    void actual_sort(T& source, T& tmp, size_t begin_index, size_t end_index) {
+    void actual_sort(T& tmp, size_t begin_index, size_t end_index) {
         if (begin_index == end_index)
             return;
 
         size_t mid_index = begin_index + (end_index - begin_index) / 2;
-        actual_sort(source, tmp, begin_index, mid_index);
-        actual_sort(source, tmp, mid_index+1, end_index);
-        merge(source, tmp, begin_index, mid_index, end_index);
+        actual_sort(tmp, begin_index, mid_index);
+        actual_sort(tmp, mid_index+1, end_index);
+        merge(tmp, begin_index, mid_index, end_index);
     };
 
-    void merge(T& source, T& tmp, size_t begin_index, size_t mid_index, size_t end_index) {
+    void merge(T& tmp, size_t begin_index, size_t mid_index, size_t end_index) {
         // Start and end iterators for current merge.
-        auto s_begin = source.begin() + begin_index;
-        auto s_end = source.begin() + end_index + 1;   // end() iterators traditionally point off the end of the array
+        auto s_begin = data_.begin() + begin_index;
+        auto s_end = data_.begin() + end_index + 1;     // end() iterators traditionally point off the end of the array
         auto t_begin = tmp.begin() + begin_index;
         auto t_end = tmp.begin() + end_index  + 1;
 
