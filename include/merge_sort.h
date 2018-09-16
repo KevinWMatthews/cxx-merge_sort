@@ -11,7 +11,7 @@ class MergeSort
 {
 public:
     MergeSort(T& data) : data_{data} {};
-    // Need to define this in the header file unless we implement inheritance
+
     void sort() {
         if (data_.empty())
             return;
@@ -23,6 +23,7 @@ public:
     };
 private:
     T& data_;
+
     void actual_sort(T& source, T& tmp, size_t begin_index, size_t end_index) {
         if (begin_index == end_index)
             return;
@@ -36,7 +37,7 @@ private:
     void merge(T& source, T& tmp, size_t begin_index, size_t mid_index, size_t end_index) {
         // Start and end iterators for current merge.
         auto s_begin = source.begin() + begin_index;
-        auto s_end = source.begin() + end_index + 1;   // end() iterators actually point off the end of the array
+        auto s_end = source.begin() + end_index + 1;   // end() iterators traditionally point off the end of the array
         auto t_begin = tmp.begin() + begin_index;
         auto t_end = tmp.begin() + end_index  + 1;
 
