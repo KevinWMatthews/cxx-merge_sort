@@ -5,98 +5,128 @@
 
 using namespace std;
 
-TEST(TestMergeSort, DoNotFailWithEmptyArray)
+class MergeSortZeroElementTest : public ::testing::Test
 {
-    array<int, 0> data = {};
-    MergeSort<array<int, 0>> merge_sort = {data};
-    merge_sort.sort();
-    ASSERT_TRUE( is_sorted(data.cbegin(), data.cend()) );
-}
+protected:
+    using data_type = array<int, 0>;
+};
 
-TEST(TestMergeSort, ArrayWithOneElementIsAlreadySorted)
+TEST_F(MergeSortZeroElementTest, DoNotFailWithEmptyArray)
 {
-    array<int, 1> data = {0};
-    MergeSort<array<int, 1>> merge_sort = {data};
-    merge_sort.sort();
-    ASSERT_TRUE( is_sorted(data.cbegin(), data.cend()) );
-}
-
-TEST(TestMergeSort, ArrayWithTwoIdenticalElementsIsAlreadySorted)
-{
-    array<int, 2> data = {0, 0};
-    MergeSort<array<int, 2>> merge_sort = {data};
-    merge_sort.sort();
-    ASSERT_TRUE( is_sorted(data.cbegin(), data.cend()) );
-}
-
-TEST(TestMergeSort, ArrayWithTwoSortedElementsIsStillSorted)
-{
-    array<int, 2> expected = {0, 1};
-    array<int, 2> actual = {0, 1};
-    MergeSort<array<int, 2>> merge_sort = {actual};
+    data_type expected = {};
+    data_type actual   = {};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
 
-TEST(TestMergeSort, ArrayWithTwoUnsortedElementsGetsSorted)
+
+class MergeSortOneElementTest : public ::testing::Test
 {
-    array<int, 2> expected = {0, 1};
-    array<int, 2> actual = {1, 0};
-    MergeSort<array<int, 2>> merge_sort = {actual};
+protected:
+    using data_type = array<int, 1>;
+};
+
+TEST_F(MergeSortOneElementTest, ArrayWithOneElementIsAlreadySorted)
+{
+    data_type expected = {0};
+    data_type actual   = {0};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
 
-TEST(TestMergeSort, ArrayWithThreeSortedElementsStaysSorted)
+
+class MergeSortTwoElementTest : public ::testing::Test
 {
-    array<int, 3> expected = {0, 1, 2};
-    array<int, 3> actual = {0, 1, 2};
-    MergeSort<array<int, 3>> merge_sort = {actual};
+protected:
+    using data_type = array<int, 2>;
+};
+
+TEST_F(MergeSortTwoElementTest, ArrayWithTwoIdenticalElementsIsAlreadySorted)
+{
+    data_type expected = {0, 0};
+    data_type actual   = {0, 0};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
 
-TEST(TestMergeSort, ArrayWithThreeSortedElementsStaysSorted2)
+TEST_F(MergeSortTwoElementTest, ArrayWithTwoSortedElementsIsStillSorted)
 {
-    array<int, 3> expected = {10, 10, 12};
-    array<int, 3> actual = {10, 10, 12};
-    MergeSort<array<int, 3>> merge_sort = {actual};
+    data_type expected = {0, 1};
+    data_type actual   = {0, 1};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
 
-TEST(TestMergeSort, ArrayWithThreeSortedElementsStaysSorted3)
+TEST_F(MergeSortTwoElementTest, ArrayWithTwoUnsortedElementsGetsSorted)
 {
-    array<int, 3> expected = {10, 12, 12};
-    array<int, 3> actual = {10, 12, 12};
-    MergeSort<array<int, 3>> merge_sort = {actual};
+    data_type expected = {0, 1};
+    data_type actual   = {1, 0};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
 
-TEST(TestMergeSort, ArrayWithThreeUnSortedElementsSwapsLastElements)
+class MergeSortThreeElementTest : public ::testing::Test
 {
-    array<int, 3> expected = {10, 11, 12};
-    array<int, 3> actual = {10, 12, 11};
-    MergeSort<array<int, 3>> merge_sort = {actual};
+protected:
+    using data_type = array<int, 3>;
+};
+
+
+TEST_F(MergeSortThreeElementTest, ArrayWithThreeSortedElementsStaysSorted)
+{
+    data_type expected = {0, 1, 2};
+    data_type actual   = {0, 1, 2};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
 
-TEST(TestMergeSort, ArrayWithThreeUnSortedElementsSwapsFirstElements)
+TEST_F(MergeSortThreeElementTest, ArrayWithThreeSortedElementsStaysSorted2)
 {
-    array<int, 3> expected = {10, 11, 12};
-    array<int, 3> actual = {11, 10, 12};
-    MergeSort<array<int, 3>> merge_sort = {actual};
+    data_type expected = {10, 10, 12};
+    data_type actual   = {10, 10, 12};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
 
-TEST(TestMergeSort, ArrayWithThreeUnSortedElementsSwapsAllElements)
+TEST_F(MergeSortThreeElementTest, ArrayWithThreeSortedElementsStaysSorted3)
 {
-    array<int, 3> expected = {10, 11, 12};
-    array<int, 3> actual = {12, 11, 10};
-    MergeSort<array<int, 3>> merge_sort = {actual};
+    data_type expected = {10, 12, 12};
+    data_type actual   = {10, 12, 12};
+    MergeSort<data_type> merge_sort = {actual};
+    merge_sort.sort();
+    ASSERT_EQ(expected, actual);
+}
+
+TEST_F(MergeSortThreeElementTest, ArrayWithThreeUnSortedElementsSwapsLastElements)
+{
+    data_type expected = {10, 11, 12};
+    data_type actual   = {10, 12, 11};
+    MergeSort<data_type> merge_sort = {actual};
+    merge_sort.sort();
+    ASSERT_EQ(expected, actual);
+}
+
+TEST_F(MergeSortThreeElementTest, ArrayWithThreeUnSortedElementsSwapsFirstElements)
+{
+    data_type expected = {10, 11, 12};
+    data_type actual   = {11, 10, 12};
+    MergeSort<data_type> merge_sort = {actual};
+    merge_sort.sort();
+    ASSERT_EQ(expected, actual);
+}
+
+TEST_F(MergeSortThreeElementTest, ArrayWithThreeUnSortedElementsSwapsAllElements)
+{
+    data_type expected = {10, 11, 12};
+    data_type actual   = {12, 11, 10};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
@@ -110,7 +140,7 @@ protected:
 TEST_F(MergeSortFourElementTest, SortedElementsRemainSorted)
 {
     type expected = {10, 11, 12, 13};
-    type actual =   {10, 11, 12, 13};
+    type actual   = {10, 11, 12, 13};
     MergeSort<type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
@@ -119,7 +149,7 @@ TEST_F(MergeSortFourElementTest, SortedElementsRemainSorted)
 TEST_F(MergeSortFourElementTest, SwapSortedFirstAndLastPair)
 {
     type expected = {10, 11, 12, 13};
-    type actual =   {12, 13, 10, 11};
+    type actual   = {12, 13, 10, 11};
     MergeSort<type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
@@ -128,7 +158,7 @@ TEST_F(MergeSortFourElementTest, SwapSortedFirstAndLastPair)
 TEST_F(MergeSortFourElementTest, SwapUnsortedFirstAndLastPair)
 {
     type expected = {10, 11, 12, 13};
-    type actual =   {11, 10, 13, 12};
+    type actual   = {11, 10, 13, 12};
     MergeSort<type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
@@ -137,7 +167,7 @@ TEST_F(MergeSortFourElementTest, SwapUnsortedFirstAndLastPair)
 TEST_F(MergeSortFourElementTest, SwapIdenticalFirstAndLastPair)
 {
     type expected = {10, 10, 12, 12};
-    type actual =   {12, 12, 10, 10};
+    type actual   = {12, 12, 10, 10};
     MergeSort<type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
@@ -146,7 +176,7 @@ TEST_F(MergeSortFourElementTest, SwapIdenticalFirstAndLastPair)
 TEST_F(MergeSortFourElementTest, SwapMiddlePair)
 {
     type expected = {10, 11, 12, 13};
-    type actual =   {10, 12, 11, 13};
+    type actual   = {10, 12, 11, 13};
     MergeSort<type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
