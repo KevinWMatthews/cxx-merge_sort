@@ -2,6 +2,7 @@
 #define MERGE_SORT_H
 
 #include <array>
+#include <algorithm>
 
 // Sort an array using a naive merge sort algorithm.
 template<class T>
@@ -17,10 +18,34 @@ public:
             return;
 
         T tmp = {data_};
-        if (tmp.at(1) < tmp.at(0))
+        auto lo = tmp.cbegin();
+        auto mid_index = (tmp.size()-1) / 2;    // size is 1-based, index is 0-based
+        auto mid = lo + mid_index;
+        auto hi = mid + 1;
+        auto end = tmp.cend();
+
+        for (auto& it : data_)
         {
-            data_.at(0) = tmp.at(1);
-            data_.at(1) = tmp.at(0);
+            // if (lo > mid)
+            // {
+            //     it = *hi;
+            //     ++hi;
+            // }
+            if (hi == end)
+            {
+                it = *lo;
+                ++lo;
+            }
+            else if (*hi < *lo)
+            {
+                it = *hi;
+                ++hi;
+            }
+            else
+            {
+                it = *lo;
+                ++lo;
+            }
         }
     };
 private:
