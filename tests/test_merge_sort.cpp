@@ -83,8 +83,7 @@ TEST(TestMergeSort, ArrayWithThreeUnSortedElementsSwapsLastElements)
     ASSERT_EQ(expected, actual);
 }
 
-// This needs a recursive sort?
-TEST(DISABLED_TestMergeSort, ArrayWithThreeUnSortedElementsSwapsFirstElements)
+TEST(TestMergeSort, ArrayWithThreeUnSortedElementsSwapsFirstElements)
 {
     array<int, 3> expected = {10, 11, 12};
     array<int, 3> actual = {11, 10, 12};
@@ -93,8 +92,7 @@ TEST(DISABLED_TestMergeSort, ArrayWithThreeUnSortedElementsSwapsFirstElements)
     ASSERT_EQ(expected, actual);
 }
 
-// This needs a recursive sort?
-TEST(DISABLED_TestMergeSort, ArrayWithThreeUnSortedElementsSwapsAllElements)
+TEST(TestMergeSort, ArrayWithThreeUnSortedElementsSwapsAllElements)
 {
     array<int, 3> expected = {10, 11, 12};
     array<int, 3> actual = {12, 11, 10};
