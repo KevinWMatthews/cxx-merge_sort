@@ -181,3 +181,12 @@ TEST_F(MergeSortFourElementTest, SwapMiddlePair)
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
+
+TEST_F(MergeSortFourElementTest, WorstCase)
+{
+    data_type expected = {10, 11, 12, 13};
+    data_type actual   = {13, 12, 11, 10};
+    MergeSort<data_type> merge_sort = {actual};
+    merge_sort.sort();
+    ASSERT_EQ(expected, actual);
+}
