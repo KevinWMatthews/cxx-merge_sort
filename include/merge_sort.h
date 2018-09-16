@@ -11,7 +11,7 @@ public:
     MergeSort(T& data) : data_{data} {};
     // Need to define this in the header file unless we implement inheritance
     void sort() {
-        if ( !data_.size() )
+        if (data_.empty())
             return;
 
         T tmp = {data_};
