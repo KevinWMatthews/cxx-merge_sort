@@ -9,6 +9,8 @@ class MergeSort
 {
 public:
     MergeSort(T data) {};
+    // Need to define this in the header file unless we implement inheritance
+    void sort() {};
 };
 
 #endif
