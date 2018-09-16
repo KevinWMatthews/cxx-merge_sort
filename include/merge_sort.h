@@ -36,39 +36,40 @@ private:
 
     void merge(T& tmp, size_t begin_index, size_t mid_index, size_t end_index) {
         // Start and end iterators for current merge.
-        auto s_begin = data_.begin() + begin_index;
-        auto s_end = data_.begin() + end_index + 1;     // end() iterators traditionally point off the end of the array
-        auto t_begin = tmp.begin() + begin_index;
-        auto t_end = tmp.begin() + end_index  + 1;
+        auto data_begin = data_.begin() + begin_index;
+        auto data_end = data_.begin() + end_index + 1;     // end() iterators traditionally point off the end of the array
+        auto tmp_begin = tmp.begin() + begin_index;
+        auto tmp_end = tmp.begin() + end_index  + 1;
 
-        std::copy(s_begin, s_end, t_begin);
+        // Copy the elements we're working with into the temporary array
+        std::copy(data_begin, data_end, tmp_begin);
 
         // Iterators for two halves of the temporary array
-        auto t_lower = t_begin;
-        auto t_mid = tmp.begin() + mid_index;
-        auto t_upper = tmp.begin() + mid_index + 1;
+        auto tmp_lower = tmp_begin;
+        auto tmp_mid = tmp.begin() + mid_index;
+        auto tmp_upper = tmp.begin() + mid_index + 1;
 
-        for(auto it = s_begin; it < s_end; ++it)
+        for(auto it = data_begin; it < data_end; ++it)
         {
-            if (t_lower > t_mid)
+            if (tmp_lower > tmp_mid)
             {
-                *it = *t_upper;
-                ++t_upper;
+                *it = *tmp_upper;
+                ++tmp_upper;
             }
-            else if (t_upper == t_end)
+            else if (tmp_upper == tmp_end)
             {
-                *it = *t_lower;
-                ++t_lower;
+                *it = *tmp_lower;
+                ++tmp_lower;
             }
-            else if (*t_upper < *t_lower)
+            else if (*tmp_upper < *tmp_lower)
             {
-                *it = *t_upper;
-                ++t_upper;
+                *it = *tmp_upper;
+                ++tmp_upper;
             }
             else
             {
-                *it = *t_lower;
-                ++t_lower;
+                *it = *tmp_lower;
+                ++tmp_lower;
             }
         }
     };
