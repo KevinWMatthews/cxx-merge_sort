@@ -1,0 +1,10 @@
+Add notes on gotchas:
+    stability: < vs <=
+    Overflow: (low+high)/2 vs (low + (hi - low) / 2)
+    Merge only works with an array with an equal number of elements?
+        Recursion is required otherwise.
+    Iterators - be sure you're iterating over the correct array.
+    Copy - sorted data is placed in data_. The next sort must re-populate tmp.
+
+Add tests for stability.
+(Doesn't exist with the current data type?).
