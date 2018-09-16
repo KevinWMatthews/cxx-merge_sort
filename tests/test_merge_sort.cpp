@@ -182,10 +182,54 @@ TEST_F(MergeSortFourElementTest, SwapMiddlePair)
     ASSERT_EQ(expected, actual);
 }
 
-TEST_F(MergeSortFourElementTest, WorstCase)
+TEST_F(MergeSortFourElementTest, SortsWorstCase)
 {
     data_type expected = {10, 11, 12, 13};
     data_type actual   = {13, 12, 11, 10};
+    MergeSort<data_type> merge_sort = {actual};
+    merge_sort.sort();
+    ASSERT_EQ(expected, actual);
+}
+
+// These are extra tests to make sure it actually works.
+// Didn't have to change any code...
+class MergeSortFiveElementTest : public ::testing::Test
+{
+protected:
+    using data_type = array<int, 5>;
+};
+
+TEST_F(MergeSortFiveElementTest, SortsWorstCase)
+{
+    data_type expected = {10, 11, 12, 13, 14};
+    data_type actual   = {14, 13, 12, 11, 10};
+    MergeSort<data_type> merge_sort = {actual};
+    merge_sort.sort();
+    ASSERT_EQ(expected, actual);
+}
+
+TEST_F(MergeSortFiveElementTest, SortsMiddlePairLeft)
+{
+    data_type expected = {10, 11, 12, 13, 14};
+    data_type actual   = {10, 12, 11, 13, 14};
+    MergeSort<data_type> merge_sort = {actual};
+    merge_sort.sort();
+    ASSERT_EQ(expected, actual);
+}
+
+TEST_F(MergeSortFiveElementTest, SortsMiddlePairRight)
+{
+    data_type expected = {10, 11, 12, 13, 14};
+    data_type actual   = {10, 11, 13, 12, 14};
+    MergeSort<data_type> merge_sort = {actual};
+    merge_sort.sort();
+    ASSERT_EQ(expected, actual);
+}
+
+TEST_F(MergeSortFiveElementTest, SortsEndElements)
+{
+    data_type expected = {10, 11, 12, 13, 14};
+    data_type actual   = {14, 11, 12, 13, 10};
     MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
