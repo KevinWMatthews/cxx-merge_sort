@@ -134,50 +134,50 @@ TEST_F(MergeSortThreeElementTest, ArrayWithThreeUnSortedElementsSwapsAllElements
 class MergeSortFourElementTest : public ::testing::Test
 {
 protected:
-    typedef array<int, 4> type;
+    using data_type = array<int, 4>;
 };
 
 TEST_F(MergeSortFourElementTest, SortedElementsRemainSorted)
 {
-    type expected = {10, 11, 12, 13};
-    type actual   = {10, 11, 12, 13};
-    MergeSort<type> merge_sort = {actual};
+    data_type expected = {10, 11, 12, 13};
+    data_type actual   = {10, 11, 12, 13};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
 
 TEST_F(MergeSortFourElementTest, SwapSortedFirstAndLastPair)
 {
-    type expected = {10, 11, 12, 13};
-    type actual   = {12, 13, 10, 11};
-    MergeSort<type> merge_sort = {actual};
+    data_type expected = {10, 11, 12, 13};
+    data_type actual   = {12, 13, 10, 11};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
 
 TEST_F(MergeSortFourElementTest, SwapUnsortedFirstAndLastPair)
 {
-    type expected = {10, 11, 12, 13};
-    type actual   = {11, 10, 13, 12};
-    MergeSort<type> merge_sort = {actual};
+    data_type expected = {10, 11, 12, 13};
+    data_type actual   = {11, 10, 13, 12};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
 
 TEST_F(MergeSortFourElementTest, SwapIdenticalFirstAndLastPair)
 {
-    type expected = {10, 10, 12, 12};
-    type actual   = {12, 12, 10, 10};
-    MergeSort<type> merge_sort = {actual};
+    data_type expected = {10, 10, 12, 12};
+    data_type actual   = {12, 12, 10, 10};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
 
 TEST_F(MergeSortFourElementTest, SwapMiddlePair)
 {
-    type expected = {10, 11, 12, 13};
-    type actual   = {10, 12, 11, 13};
-    MergeSort<type> merge_sort = {actual};
+    data_type expected = {10, 11, 12, 13};
+    data_type actual   = {10, 12, 11, 13};
+    MergeSort<data_type> merge_sort = {actual};
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
