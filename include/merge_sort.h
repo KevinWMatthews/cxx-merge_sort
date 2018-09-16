@@ -13,12 +13,14 @@ public:
     void sort() {
         if (data_.empty())
             return;
+        if (data_.size() == 1)
+            return;
 
         T tmp = {data_};
-        if (tmp[1] < tmp[0])
+        if (tmp.at(1) < tmp.at(0))
         {
-            data_[0] = tmp[1];
-            data_[1] = tmp[0];
+            data_.at(0) = tmp.at(1);
+            data_.at(1) = tmp.at(0);
         }
     };
 private:
