@@ -73,3 +73,32 @@ TEST(TestMergeSort, ArrayWithThreeSortedElementsStaysSorted3)
     merge_sort.sort();
     ASSERT_EQ(expected, actual);
 }
+
+TEST(TestMergeSort, ArrayWithThreeUnSortedElementsSwapsLastElements)
+{
+    array<int, 3> expected = {10, 11, 12};
+    array<int, 3> actual = {10, 12, 11};
+    MergeSort<array<int, 3>> merge_sort = {actual};
+    merge_sort.sort();
+    ASSERT_EQ(expected, actual);
+}
+
+// This needs a recursive sort?
+TEST(DISABLED_TestMergeSort, ArrayWithThreeUnSortedElementsSwapsFirstElements)
+{
+    array<int, 3> expected = {10, 11, 12};
+    array<int, 3> actual = {11, 10, 12};
+    MergeSort<array<int, 3>> merge_sort = {actual};
+    merge_sort.sort();
+    ASSERT_EQ(expected, actual);
+}
+
+// This needs a recursive sort?
+TEST(DISABLED_TestMergeSort, ArrayWithThreeUnSortedElementsSwapsAllElements)
+{
+    array<int, 3> expected = {10, 11, 12};
+    array<int, 3> actual = {12, 11, 10};
+    MergeSort<array<int, 3>> merge_sort = {actual};
+    merge_sort.sort();
+    ASSERT_EQ(expected, actual);
+}

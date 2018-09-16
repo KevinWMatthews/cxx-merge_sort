@@ -19,19 +19,19 @@ public:
 
         T tmp = {data_};
         auto lo = tmp.cbegin();
-        auto mid_index = (tmp.size()-1) / 2;    // size is 1-based, index is 0-based
+        auto end = tmp.cend();
+        auto mid_index = (std::distance(lo, end)-1) / 2;
         auto mid = lo + mid_index;
         auto hi = mid + 1;
-        auto end = tmp.cend();
 
         for (auto& it : data_)
         {
-            // if (lo > mid)
-            // {
-            //     it = *hi;
-            //     ++hi;
-            // }
-            if (hi == end)
+            if (lo > mid)
+            {
+                it = *hi;
+                ++hi;
+            }
+            else if (hi == end)
             {
                 it = *lo;
                 ++lo;
