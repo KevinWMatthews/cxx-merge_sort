@@ -31,10 +31,11 @@ TEST(TestMergeSort, ArrayWithTwoIdenticalElementsIsAlreadySorted)
 
 TEST(TestMergeSort, ArrayWithTwoSortedElementsIsStillSorted)
 {
-    array<int, 2> data = {0, 1};
-    MergeSort<array<int, 2>> merge_sort = {data};
+    array<int, 2> expected = {0, 1};
+    array<int, 2> actual = {0, 1};
+    MergeSort<array<int, 2>> merge_sort = {actual};
     merge_sort.sort();
-    ASSERT_TRUE( is_sorted(data.cbegin(), data.cend()) );
+    ASSERT_EQ(expected, actual);
 }
 
 TEST(TestMergeSort, ArrayWithTwoUnsortedElementsGetsSorted)
@@ -43,5 +44,5 @@ TEST(TestMergeSort, ArrayWithTwoUnsortedElementsGetsSorted)
     array<int, 2> actual = {1, 0};
     MergeSort<array<int, 2>> merge_sort = {actual};
     merge_sort.sort();
-    ASSERT_EQ( expected, actual );
+    ASSERT_EQ(expected, actual);
 }
