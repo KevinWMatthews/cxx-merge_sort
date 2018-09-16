@@ -19,16 +19,16 @@ public:
             return;
 
         T tmp = {data_};
-
-        // Boundary conditions
-        size_t begin_index = 0;
-        size_t end_index = data_.size() - 1;
-        size_t mid_index = begin_index + (end_index - begin_index) / 2;    // Prevent possible integer overflow
-
-        merge(tmp, begin_index, mid_index, end_index);
+        actual_sort(tmp, 0, data_.size()-1);
     };
 private:
     T& data_;
+    void actual_sort(T& tmp, size_t begin_index, size_t end_index) {
+        // Boundary conditions
+        size_t mid_index = begin_index + (end_index - begin_index) / 2;    // Prevent possible integer overflow
+        merge(tmp, begin_index, mid_index, end_index);
+    };
+
     void merge(T& tmp, size_t begin_index, size_t mid_index, size_t end_index) {
         auto begin = tmp.cbegin() + begin_index;
         auto mid = begin + mid_index;
