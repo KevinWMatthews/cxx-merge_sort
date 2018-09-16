@@ -127,7 +127,7 @@ TEST_F(MergeSortFourElementTest, SwapSortedFirstAndLastPair)
     ASSERT_EQ(expected, actual);
 }
 
-TEST_F(MergeSortFourElementTest, DISABLED_SwapUnsortedFirstAndLastPair)
+TEST_F(MergeSortFourElementTest, SwapUnsortedFirstAndLastPair)
 {
     type expected = {10, 11, 12, 13};
     type actual =   {11, 10, 13, 12};

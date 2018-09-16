@@ -19,17 +19,21 @@ public:
             return;
 
         T tmp = {data_};
-        actual_sort(tmp, 0, data_.size()-1);
+        actual_sort(data_, tmp, 0, data_.size()-1);
     };
 private:
     T& data_;
-    void actual_sort(T& tmp, size_t begin_index, size_t end_index) {
-        // Boundary conditions
-        size_t mid_index = begin_index + (end_index - begin_index) / 2;    // Prevent possible integer overflow
-        merge(tmp, begin_index, mid_index, end_index);
+    void actual_sort(T& source, T& tmp, size_t begin_index, size_t end_index) {
+        if (begin_index == end_index)
+            return;
+
+        size_t mid_index = begin_index + (end_index - begin_index) / 2;
+        actual_sort(source, tmp, begin_index, mid_index);
+        actual_sort(source, tmp, mid_index+1, end_index);
+        merge(source, tmp, begin_index, mid_index, end_index);
     };
 
-    void merge(T& tmp, size_t begin_index, size_t mid_index, size_t end_index) {
+    void merge(T& source, T& tmp, size_t begin_index, size_t mid_index, size_t end_index) {
         auto begin = tmp.cbegin() + begin_index;
         auto mid = begin + mid_index;
         auto end = begin + end_index + 1;   // end() iterators actually point off the end of the array
@@ -38,7 +42,7 @@ private:
         auto lower = begin;
         auto upper = mid + 1;
 
-        for (auto& it : data_)
+        for (auto& it : source)
         {
             if (lower > mid)
             {
