@@ -36,3 +36,11 @@ TEST(TestMergeSort, ArrayWithTwoSortedElementsIsStillSorted)
     merge_sort.sort();
     ASSERT_TRUE( is_sorted(data.cbegin(), data.cend()) );
 }
+
+TEST(TestMergeSort, ArrayWithTwoUnsortedElementsGetsSorted)
+{
+    array<int, 2> data = {1, 0};
+    MergeSort<array<int, 2>> merge_sort = {data};
+    merge_sort.sort();
+    ASSERT_TRUE( is_sorted(data.cbegin(), data.cend()) );
+}
