@@ -8,6 +8,13 @@ using namespace std;
 TEST(TestMergeSort, DoNotFailWithEmptyArray)
 {
     array<int, 0> data = {};
-    MergeSort merge_sort = {data};
+    MergeSort<array<int, 0>> merge_sort = {data};
+    ASSERT_TRUE( is_sorted(data.cbegin(), data.cend()) );
+}
+
+TEST(TestMergeSort, ArrayWithOneElementIsAlreadySorted)
+{
+    array<int, 1> data = {0};
+    MergeSort<array<int, 1>> merge_sort = {data};
     ASSERT_TRUE( is_sorted(data.cbegin(), data.cend()) );
 }

@@ -4,11 +4,11 @@
 #include <array>
 
 // Sort an array using a naive merge sort algorithm.
+template<class T>
 class MergeSort
 {
-
 public:
-    MergeSort(std::array<int, 0> data);
+    MergeSort(T data) {};
 };
 
 #endif
